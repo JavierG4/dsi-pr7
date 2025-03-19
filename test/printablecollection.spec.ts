@@ -11,6 +11,7 @@ const strCollection: StringPrintableCollection = new StringPrintableCollection(l
 const numberCollection: NumericPrintableCollection = new NumericPrintableCollection(list_num)
 
 const strCollection2: StringPrintableCollection = new StringPrintableCollection(list_str2)
+ 
 
 describe ("Coleccion de pruebas de StringsCollection", () => {
   test("Probar print ", ()=> {
