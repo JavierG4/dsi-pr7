@@ -5,8 +5,12 @@ import { Accion } from '../src/tupla';
 const logger: Logger = Logger.getLogger()
 const accion1: Accion = [1,"Inicio_Sesion",new Date(2022,5,24,0,0,0,0)]
 const accion2: Accion = [1,"Inicio_Sesion",new Date(2023,5,24,0,0,0,0)]
+const accion3: Accion = [2,"Suscribirse", new Date(2019,1,1,0,0,0,0)]
 const dateAbajo: Date = new Date(2020,1,1,0,0,0,0)
 const DateArriba: Date = new Date(2024,1,1,0,0,0,0)
+const Datemedia: Date = new Date(2022,12,1,0,0,0,0)
+//const dateAbajo2: Date = new Date(2018,1,1,0,0,0,0)
+//const Datemedia2: Date = new Date(2023,1,1,0,0,0,0)
 describe("Test de Logger", ()=> {
   test("Creacción de logger", ()=> {
     expect(Logger.getLogger())
@@ -31,7 +35,18 @@ describe("Test de Logger", ()=> {
   test("Encontar acciones entre fechas", ()=> {
     expect(logger.getAccionesByTiempo(dateAbajo,DateArriba)).toEqual([accion1,accion2])
   })
+  test("Encontar acciones entre fechas", ()=> {
+    expect(logger.getAccionesByTiempo(dateAbajo,Datemedia)).toEqual([accion1])
+  })
   test("Encontrar por accion del sistema", ()=> {
     expect(logger.getAccionByAccion("Inicio_Sesion")).toEqual([accion1,accion2])
   })
+  test("Encontrar accion por usuario", ()=> {
+    expect(logger.addAccion(accion3)).toEqual(accion3)
+    expect(logger.getAccionByUser(2)).toEqual([accion3])
+  })
+  test("Encontrar por accion del sistema", ()=> {
+    expect(logger.getAccionByAccion("Suscribirse")).toEqual([accion3])
+  })
+
 })

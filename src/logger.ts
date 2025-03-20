@@ -3,7 +3,7 @@ import { Accion } from "./tupla.js";
 /**
  * Clase Logger que registra acciones y sigue el pátron singleton
  */
-export class Logger {
+export class Logger implements Iterable<Accion> {
   /**
    * Instancia de Logger
    */
@@ -29,6 +29,10 @@ export class Logger {
   addAccion(accion:Accion): Accion {
     this.acciones.push(accion) 
     return accion 
+  }
+
+  [Symbol.iterator](): IterableIterator<Accion> {
+    return this.acciones.values()
   }
 
   /**
@@ -88,4 +92,6 @@ export class Logger {
     });
     return accionesEnTiempo;
   }
+
 }
+
